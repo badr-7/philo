@@ -17,10 +17,12 @@ typedef struct args
 
 typedef struct philo
 {
+	t_args			*arg;
 	int				index;
 	int				eat_count;
 	pthread_t		philo;
     pthread_mutex_t fork;
+    pthread_mutex_t eating;
     struct philo	*next_philo;
 	int				last_time_eat;
 }			philo_data;
@@ -37,7 +39,7 @@ typedef struct tt
 void pars(char **s);
 void args_conv(char **s, t_args *a);
 int	ft_atoi(const char	*str);
-void creat_philos(all_data *a);
+void creat_forks(all_data *a, t_args *b);
 philo_data	*iniit2(void);
 
 #endif
