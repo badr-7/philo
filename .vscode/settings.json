@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "chrono": "c",
-        "philo": "c"
+        "philo": "c",
+        "time.h": "c"
     }
 }
