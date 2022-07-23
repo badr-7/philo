@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:34:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/21 15:13:16 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/23 10:48:58 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,18 @@ philo_data	*iniit2(void)
 	pthread_mutex_init(&a->fork, NULL);
 	return (a);
 }
+void creat_treads(all_data *a, int chosen_ones)
+{
+	int i;
 
+	i = chosen_ones;
+	while(i < a->args->number_philo)
+	{
+		a->philosofer[i].all_info = a;
+		pthread_create(&a->philosofer[i].philo, NULL, lock_forks(), a);
+	}
+	
+}
 int main(int ac, char **av)
 {
 	t_args *a;

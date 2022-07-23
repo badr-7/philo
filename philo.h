@@ -26,6 +26,7 @@ typedef struct philo
     pthread_mutex_t eating;
     struct philo	*next_philo;
 	int				last_time_eat;
+	struct tt		*all_info;
 }			philo_data;
 
 typedef struct tt
@@ -42,5 +43,9 @@ void args_conv(char **s, t_args *a);
 int	ft_atoi(const char	*str);
 void creat_forks(all_data *a, t_args *b);
 philo_data	*iniit2(void);
+void lock_forks(philo_data *a);
+unsigned int actuel_time(void);
+void eating_time(philo_data *a);
+
 
 #endif
