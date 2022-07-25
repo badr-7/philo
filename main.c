@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:34:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/23 10:48:58 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/25 11:37:00 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,21 @@ void creat_treads(all_data *a, int chosen_ones)
 	while(i < a->args->number_philo)
 	{
 		a->philosofer[i].all_info = a;
-		pthread_create(&a->philosofer[i].philo, NULL, lock_forks(), a);
+		a->philosofer[i].eat_count = 0;
+		a->philosofer[i].last_time_eat = actuel_time();
+		pthread_create(&a->philosofer[i].philo, NULL, theory, (void *)&a->philosofer[i]);
+		pthread_detach(a->philosofer[i].philo);
+		i += 2;
 	}
 	
 }
+void	ft_run(all_data *a)
+{
+	creat_treads(a, 0);
+	usleep(100);
+	creat_treads(a, 1);
+}
+
 int main(int ac, char **av)
 {
 	t_args *a;

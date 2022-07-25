@@ -46,6 +46,8 @@ philo_data	*iniit2(void);
 void lock_forks(philo_data *a);
 unsigned int actuel_time(void);
 void eating_time(philo_data *a);
+void *theory(void *arg);
+void ft_print(char *str, philo_data *a);
 
 
 #endif
