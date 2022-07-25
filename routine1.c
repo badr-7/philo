@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 11:37:22 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/25 11:52:06 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:03:12 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void ft_print(char *str, philo_data *a)
 {
     pthread_mutex_lock(&a->all_info->lock_print);
-    printf("%u %d %s\n", actuel_time(), a->index, str);
+    printf("%u %d %s\n", actuel_time() - a->all_info->starting_time, a->index, str);
     pthread_mutex_unlock(&a->all_info->lock_print);
 }
 

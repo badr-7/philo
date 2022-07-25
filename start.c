@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:11:20 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/21 15:14:04 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:02:45 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void creat_forks(all_data *a, t_args *b)
         i++;
     }
     a->philosofer[i - 1].next_philo =  &a->philosofer[0];
+    a->starting_time = actuel_time();
 }

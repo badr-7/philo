@@ -32,9 +32,10 @@ typedef struct philo
 typedef struct tt
 {
 	philo_data	*philosofer;
-	t_args		*args; 
+	t_args		*args;
 	pthread_mutex_t	lock_print;
 	char	dead;
+	unsigned int		starting_time;
 }				all_data;
 
 

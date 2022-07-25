@@ -11,6 +11,8 @@ RM = rm -rf
 SRC =	main.c\
 		args_check.c\
 		start.c\
+		routine.c\
+		routine1.c\
 
 OBJ = ${SRC:.c=.o}
 

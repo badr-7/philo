@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:34:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/25 11:37:00 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:12:13 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int main(int ac, char **av)
 	pars(av);
 	args_conv(av, a);
 	creat_forks(philo, a);
+	ft_run(philo);
 	return (0);
 }
