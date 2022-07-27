@@ -13,6 +13,7 @@ SRC =	main.c\
 		start.c\
 		routine.c\
 		routine1.c\
+		ft_isdead.c\
 
 OBJ = ${SRC:.c=.o}
 

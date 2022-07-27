@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:00:16 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/01 13:29:54 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:03:27 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_atoi(const char	*str)
 	return (result * signe);
 }
 
-void pars(char **s)
+int pars(char **s)
 {
 	int	i;
 	int	j;
@@ -58,18 +58,19 @@ void pars(char **s)
 	{
 		j = 0;
 		if(s[i][j] == '\0')
-			exit (write(2, "ERROR\n", 6));
+			return (write(2, "ERROR\n", 6), 1);
 		while (s[i][j])
 		{
 			if ((s[i][j] >= 58 && s[i][j] <= 127) || (s[i][j] >= 33 && s[i][j] <= 47))
 		{
 			write(2, "Error\n", 6);
-			exit (1);
+			return (1);
 		}
 			j++;
 		}
 		i++;
 	}
+	return(0);
 }
 
 void args_conv(char **s, t_args *a)

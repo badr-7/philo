@@ -39,7 +39,7 @@ typedef struct tt
 }				all_data;
 
 
-void pars(char **s);
+int pars(char **s);
 void args_conv(char **s, t_args *a);
 int	ft_atoi(const char	*str);
 void creat_forks(all_data *a, t_args *b);
@@ -49,6 +49,7 @@ unsigned int actuel_time(void);
 void eating_time(philo_data *a);
 void *theory(void *arg);
 void ft_print(char *str, philo_data *a);
+int inspector(all_data *a);
 
 
 #endif
