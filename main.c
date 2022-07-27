@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:34:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/27 11:10:49 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/27 15:12:34 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,12 @@ int main(int ac, char **av)
 	philo = (all_data *)malloc(sizeof(all_data));
     a = iniit();
 	philo->args = a;
+	philo->philo_dead = 0;
 	if(pars(av) != 0)
 		return(1);
 	args_conv(av, a);
 	creat_forks(philo, a);
 	ft_run(philo);
-	inspector(philo);
+	lmkadem(philo);
 	return (0);
 }

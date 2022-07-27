@@ -36,6 +36,7 @@ typedef struct tt
 	pthread_mutex_t	lock_print;
 	char	dead;
 	unsigned int		starting_time;
+	int philo_dead;
 }				all_data;
 
 
@@ -49,7 +50,7 @@ unsigned int actuel_time(void);
 void eating_time(philo_data *a);
 void *theory(void *arg);
 void ft_print(char *str, philo_data *a);
-int inspector(all_data *a);
+int lmkadem(all_data *a);
 
 
 #endif
