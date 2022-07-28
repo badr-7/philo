@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:31:32 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/28 14:41:20 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:14:36 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	lock_forks(t_philo_data *a)
 {
 	pthread_mutex_lock(&a->fork);
-	ft_print("take a forke", a);
+	ft_print("take a fork", a);
 	pthread_mutex_lock(&a->next_philo->fork);
-	ft_print("take a forke", a);
+	ft_print("take a fork", a);
 }
 
 void	eating_time(t_philo_data *a)

@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:26:09 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/28 14:41:49 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:17:59 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct philo
 
 typedef struct tt
 {
-	philo_data		*philosofer;
+	t_philo_data	*philosofer;
 	t_args			*args;
 	pthread_mutex_t	lock_print;
 	char			dead;
@@ -54,13 +54,13 @@ typedef struct tt
 int				pars(char **s);
 void			args_conv(char **s, t_args *a);
 int				ft_atoi(const char	*str);
-void			creat_forks(all_data *a, t_args *b);
+void			creat_forks(t_all_data *a, t_args *b);
 t_philo_data	*iniit2(void);
-void			lock_forks(philo_data *a);
+void			lock_forks(t_philo_data *a);
 unsigned int	actuel_time(void);
-void			eating_time(philo_data *a);
+void			eating_time(t_philo_data *a);
 void			*theory(void *arg);
-void			ft_print(char *str, philo_data *a);
-int				lmkadem(all_data *a);
+void			ft_print(char *str, t_philo_data *a);
+int				lmkadem(t_all_data *a);
 
 #endif

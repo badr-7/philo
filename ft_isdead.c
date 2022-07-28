@@ -6,13 +6,13 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:22:26 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/28 14:21:55 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:13:37 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	chaweche(all_data *a, int i, int *j)
+int	chaweche(t_all_data *a, int i, int *j)
 {
 	unsigned int	time_now;
 
@@ -30,7 +30,7 @@ int	chaweche(all_data *a, int i, int *j)
 	return (0);
 }
 
-int	lmkadem(all_data *a)
+int	lmkadem(t_all_data *a)
 {
 	int	i;
 	int	min_eat_cont;
