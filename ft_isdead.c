@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:22:26 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/08/19 12:53:08 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:00:15 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ int	chaweche(t_all_data *a, int i, int j)
 	if (actuel_time() - a->philosofer[i].last_time_eat
 		>= (unsigned int)a->philosofer[i].arg->t_die)
 	{
-		if (a->philosofer[i].is_eating != 0)
+		if (a->philosofer[i].is_eating == 0)
 			return (0);
 		pthread_mutex_lock(&a->print);
 		usleep(100);
-		ft_print("is dead", &a->philosofer[i]);
+		printf("%u %d %s\n", actuel_time() - a->starting_time,
+			a->philosofer[i].index, "is dead");
 		return (-1);
 	}
 	if (a->philosofer[i].eat_count >= a->philosofer[i].arg->must_eat

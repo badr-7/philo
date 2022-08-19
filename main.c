@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:34:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/08/19 12:59:09 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/19 16:00:29 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	creat_treads(t_all_data *a, int chosen_ones)
 	{
 		a->philosofer[i].all_info = a;
 		a->philosofer[i].eat_count = 0;
+		a->philosofer[i].is_eating = 0;
 		a->philosofer[i].last_time_eat = actuel_time();
 		if (pthread_create(&a->philosofer[i].philo, NULL, theory,
 				(void *)&a->philosofer[i]) != 0)
