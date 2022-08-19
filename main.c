@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:34:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/08/19 10:56:37 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:59:09 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_args	*iniit(void)
 	return (a);
 }
 
-void	creat_treads(t_all_data *a, int chosen_ones)
+int	creat_treads(t_all_data *a, int chosen_ones)
 {
 	int	i;
 
@@ -41,7 +41,8 @@ void	creat_treads(t_all_data *a, int chosen_ones)
 		if (pthread_detach(a->philosofer[i].philo) != 0)
 			return (-1);
 		i += 2;
-	}	
+	}
+	return (0);
 }
 
 void	ft_run(t_all_data *a)
@@ -53,17 +54,15 @@ void	ft_run(t_all_data *a)
 
 int	main(int ac, char **av)
 {
-	t_args		*a;
 	t_all_data	*philo;
 
 	if (ac > 6 || ac < 5)
 		return (write(2, "invalid number of args\n", 24), 1);
 	philo = (t_all_data *)malloc(sizeof(t_all_data));
-	a = iniit();
-	philo->args = a;
+	philo->args = iniit();
 	if (pars(av) != 0)
 		return (1);
-	if (args_conv(av, a) == -1)
+	if (args_conv(av, philo->args) == -1)
 		return (write(2, "YOU HAVE CROSSED THE INT LIMITS\n", 33), 1);
 	if (creat_forks(philo) == -1)
 		return (write(1, "MUTEX_INT ERROR", 1), -1);
