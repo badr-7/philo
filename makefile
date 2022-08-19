@@ -1,10 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/08/17 10:13:18 by mel-hous          #+#    #+#              #
+#    Updated: 2022/08/18 15:23:14 by mel-hous         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 HEADER = philo.h
 
 NAME = philo
 
 CC	= gcc
 
-CFLAGS = -g -Wextra -Wall -Werror
+CFLAGS = -g -Wextra -Wall -Werror 
 
 RM = rm -rf
 
@@ -19,7 +31,7 @@ OBJ = ${SRC:.c=.o}
 
 all : ${NAME}
 
-${NAME} :	${OBJ}
+${NAME} :	${OBJ} ${HEADER}
 			${CC} ${CFLAGS} ${OBJ} -o ${NAME}
 
 clean :

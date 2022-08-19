@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:34:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/28 14:42:24 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/19 10:56:37 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ t_args	*iniit(void)
 	return (a);
 }
 
-t_philo_data	*iniit2(void)
-{
-	t_philo_data	*a;
-
-	a = (t_philo_data *)malloc(sizeof(t_philo_data));
-	a->index = 0;
-	a->next_philo = NULL;
-	a->last_time_eat = 0;
-	pthread_mutex_init(&a->fork, NULL);
-	return (a);
-}
-
 void	creat_treads(t_all_data *a, int chosen_ones)
 {
 	int	i;
@@ -47,9 +35,11 @@ void	creat_treads(t_all_data *a, int chosen_ones)
 		a->philosofer[i].all_info = a;
 		a->philosofer[i].eat_count = 0;
 		a->philosofer[i].last_time_eat = actuel_time();
-		pthread_create(&a->philosofer[i].philo, NULL, theory,
-			(void *)&a->philosofer[i]);
-		pthread_detach(a->philosofer[i].philo);
+		if (pthread_create(&a->philosofer[i].philo, NULL, theory,
+				(void *)&a->philosofer[i]) != 0)
+			return (-1);
+		if (pthread_detach(a->philosofer[i].philo) != 0)
+			return (-1);
 		i += 2;
 	}	
 }
@@ -67,15 +57,16 @@ int	main(int ac, char **av)
 	t_all_data	*philo;
 
 	if (ac > 6 || ac < 5)
-		exit (write(2, "invalide number of args\n", 25));
+		return (write(2, "invalid number of args\n", 24), 1);
 	philo = (t_all_data *)malloc(sizeof(t_all_data));
 	a = iniit();
 	philo->args = a;
-	philo->philo_dead = 0;
 	if (pars(av) != 0)
 		return (1);
-	args_conv(av, a);
-	creat_forks(philo, a);
+	if (args_conv(av, a) == -1)
+		return (write(2, "YOU HAVE CROSSED THE INT LIMITS\n", 33), 1);
+	if (creat_forks(philo) == -1)
+		return (write(1, "MUTEX_INT ERROR", 1), -1);
 	ft_run(philo);
 	lmkadem(philo);
 	return (0);

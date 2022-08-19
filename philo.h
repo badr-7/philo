@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:26:09 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/28 15:17:59 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/19 10:43:36 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ typedef struct philo
 {
 	t_args			*arg;
 	int				index;
+	int				is_eating;
 	int				eat_count;
 	pthread_t		philo;
 	pthread_mutex_t	fork;
-	pthread_mutex_t	eating;
 	struct philo	*next_philo;
 	int				last_time_eat;
 	struct tt		*all_info;
@@ -45,17 +45,15 @@ typedef struct tt
 {
 	t_philo_data	*philosofer;
 	t_args			*args;
-	pthread_mutex_t	lock_print;
+	pthread_mutex_t	print;
 	char			dead;
 	unsigned int	starting_time;
-	int				philo_dead;
 }				t_all_data;
 
 int				pars(char **s);
-void			args_conv(char **s, t_args *a);
+int				args_conv(char **s, t_args *a);
 int				ft_atoi(const char	*str);
-void			creat_forks(t_all_data *a, t_args *b);
-t_philo_data	*iniit2(void);
+int				creat_forks(t_all_data *a);
 void			lock_forks(t_philo_data *a);
 unsigned int	actuel_time(void);
 void			eating_time(t_philo_data *a);

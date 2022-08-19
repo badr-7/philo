@@ -6,49 +6,50 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:22:26 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/07/28 15:13:37 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/19 10:38:00 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	chaweche(t_all_data *a, int i, int *j)
+int	chaweche(t_all_data *a, int i, int j)
 {
-	unsigned int	time_now;
-
-	time_now = actuel_time();
-	if (time_now - a->philosofer[i].last_time_eat
-		> (unsigned int)a->philosofer[i].arg->t_die)
+	if (actuel_time() - a->philosofer[i].last_time_eat
+		>= (unsigned int)a->philosofer[i].arg->t_die)
 	{
-		a->philo_dead = 1;
-		printf("%u %d %s\n", time_now - a->starting_time,
-			a->philosofer[i].index, "is dead");
+		if (a->philosofer[i].is_eating != 0)
+			return (0);
+		pthread_mutex_lock(&a->print);
+		usleep(100);
+		ft_print("is dead", &a->philosofer[i]);
 		return (-1);
 	}
-	if (a->philosofer[i].eat_count >= a->philosofer[i].arg->must_eat)
-		(*j) += 1;
-	return (0);
+	if (a->philosofer[i].eat_count >= a->philosofer[i].arg->must_eat
+		&& a->args->must_eat != 0)
+		j += 1;
+	return (j);
 }
 
 int	lmkadem(t_all_data *a)
 {
 	int	i;
-	int	min_eat_cont;
+	int	counter;
 
 	while (1)
 	{
 		i = 0;
-		min_eat_cont = 0;
+		counter = 0;
 		while (i < a->args->number_philo)
 		{
-			if (chaweche(a, i, &min_eat_cont) == -1)
-				return (1);
+			counter = chaweche(a, i, counter);
+			if (counter == -1)
+				return (-1);
 			i++;
 		}
-		if (min_eat_cont == a->args->number_philo && a->args->must_eat != 0)
+		if (counter == a->args->number_philo && a->args->must_eat != 0)
 		{
-			a->philo_dead = 1;
-			pthread_mutex_lock(&a->lock_print);
+			pthread_mutex_lock(&a->print);
+			usleep(100);
 			printf("sumulation end\n");
 			return (0);
 		}
