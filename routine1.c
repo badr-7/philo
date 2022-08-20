@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 11:37:22 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/08/17 09:55:43 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/20 10:37:22 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,13 @@ unsigned int	actuel_time(void)
 	gettimeofday(&time, NULL);
 	res = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	return (res);
+}
+
+void	ft_usleep(useconds_t time)
+{
+	unsigned int	now;
+
+	now = actuel_time();
+	while (actuel_time() - now < time)
+		usleep(100);
 }

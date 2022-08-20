@@ -6,52 +6,11 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 11:34:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/08/19 16:00:29 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/20 09:52:30 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philo.h"
-
-t_args	*iniit(void)
-{
-	t_args	*a;
-
-	a = (t_args *)malloc(sizeof(t_args));
-	a->number_philo = 0;
-	a->t_die = 0;
-	a->t_eat = 0;
-	a->t_sleep = 0;
-	a->must_eat = 0;
-	return (a);
-}
-
-int	creat_treads(t_all_data *a, int chosen_ones)
-{
-	int	i;
-
-	i = chosen_ones;
-	while (i < a->args->number_philo)
-	{
-		a->philosofer[i].all_info = a;
-		a->philosofer[i].eat_count = 0;
-		a->philosofer[i].is_eating = 0;
-		a->philosofer[i].last_time_eat = actuel_time();
-		if (pthread_create(&a->philosofer[i].philo, NULL, theory,
-				(void *)&a->philosofer[i]) != 0)
-			return (-1);
-		if (pthread_detach(a->philosofer[i].philo) != 0)
-			return (-1);
-		i += 2;
-	}
-	return (0);
-}
-
-void	ft_run(t_all_data *a)
-{
-	creat_treads(a, 0);
-	usleep(100);
-	creat_treads(a, 1);
-}
 
 int	main(int ac, char **av)
 {
@@ -66,8 +25,9 @@ int	main(int ac, char **av)
 	if (args_conv(av, philo->args) == -1)
 		return (write(2, "YOU HAVE CROSSED THE INT LIMITS\n", 33), 1);
 	if (creat_forks(philo) == -1)
-		return (write(1, "MUTEX_INT ERROR", 1), -1);
-	ft_run(philo);
-	lmkadem(philo);
+		return (write(1, "MUTEX_INT ERROR\n", 17), -1);
+	if (ft_run(philo) == -1)
+		return (write(1, "THREAD ERROR\n", 14), -1);
+	chacker_assistant(philo);
 	return (0);
 }

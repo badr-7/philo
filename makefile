@@ -6,7 +6,7 @@
 #    By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/17 10:13:18 by mel-hous          #+#    #+#              #
-#    Updated: 2022/08/18 15:23:14 by mel-hous         ###   ########.fr        #
+#    Updated: 2022/08/20 09:56:59 by mel-hous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = philo
 
 CC	= gcc
 
-CFLAGS = -g -Wextra -Wall -Werror 
+CFLAGS = -Wextra -Wall -Werror 
 
 RM = rm -rf
 
@@ -35,9 +35,9 @@ ${NAME} :	${OBJ} ${HEADER}
 			${CC} ${CFLAGS} ${OBJ} -o ${NAME}
 
 clean :
-		${RM} ${OBJ}
+			${RM} ${OBJ}
 
 fclean :
-	${RM} ${OBJ} ${NAME}
+			${RM} ${OBJ} ${NAME}
 
 re : fclean all

@@ -6,23 +6,16 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 11:00:16 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/08/16 09:47:18 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/08/20 10:01:12 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philo.h"
 
-int	is_digit(char c)
-{
-	if (c >= '0' || c <= '9')
-		return (1);
-	return (0);
-}
-
 int	ft_atoi(const char	*str)
 {
 	int			i;
-	long int	result;
+	int			result;
 
 	result = 0;
 	i = 0;
